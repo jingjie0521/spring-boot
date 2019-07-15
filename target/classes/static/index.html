@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #dd{
+            background-color: red;
+            width:300px;
+            height:300px;
+        }
+
+    </style>
+</head>
+<script  src="js/vuejs-2.5.16.js">
+
+</script>
+<body>
+    <div id="d1">
+        {{text}}
+    </div>
+    <div id="d2">
+        {{mm}}
+        <button v-on:click="fun1('kkk')">美滋滋</button>
+    </div>
+    <div id="d3">
+        Vue:<input type="text" v-on:keydown="fun($event)">
+        <hr/>
+    </div>
+    <div id="d4">
+        <div @mouseover="fun2" id="dd">
+            <textarea @mouseover="fun3($event)">这是文本域</textarea>
+        </div>
+    </div>
+    <div id="d5">
+        Vue:<input type="text" @keydown.enter="fun4">
+    </div>
+    <div id="d6">
+        <div v-text="message"></div>
+        <div v-html="message"></div>
+    </div>
+    <div id="d7">
+        <font size="5" v-bind:color="ys1">二狗牛逼</font>
+        <font size="5" :color="ys2">二狗跳起来</font>
+    </div>
+    <div id="d8">
+        <form action="" method="post">
+            用户名:<input type="text" name="username" v-model="user.username"><br/>
+            密码:<input type="text" name="password" v-model="user.password"><br/>
+        </form>
+    </div>
+    <div id="d9">
+        <ul>
+            <li v-for="(item,index) in arr">{{item}}={{index}}</li>
+        </ul>
+    </div>
+</body>
+<script type="text/javascript">
+    new Vue({
+        el:"#d1",
+        data:{
+            text:'你好'
+        }
+    });
+    new Vue({
+        el:"#d2",
+        data:{
+            mm:"mei zizi"
+        },
+        methods:{
+            fun1:function (msg) {
+                this.mm=msg;
+            }
+        }
+    });
+    new Vue({
+        el:"#d3",
+        methods:{
+            fun:function (event) {
+                var keyCode=event.keyCode;
+            }
+        }
+    });
+    new Vue({
+        el:"#d4",
+        methods:{
+            fun2:function () {
+                alert("鼠标悬停在div上");
+            },
+            fun3:function (event) {
+                alert("鼠标悬停在textarea上");
+                event.stopPropagation();
+            }
+        }
+    });
+    new Vue({
+        el:"#d5",
+        methods:{
+            fun4:function () {
+                alert("按下的是回车");
+            }
+        }
+    });
+    new Vue({
+        el:"#d6",
+        data:{
+            message:"<h1>二狗牛逼</h1>"
+        }
+    });
+    new Vue({
+        el:"#d7",
+        data:{
+            ys1:"red",
+            ys2:"green"
+        }
+    });
+    new Vue({
+        el:"#d8",
+        data:{
+            user:{
+                username:"text",
+                password:"1234"
+            }
+        }
+    });
+    new Vue({
+        el:"#d9",
+        data:{
+            arr:[1,2,3,4,5]
+        }
+    });
+</script>
+</html>
